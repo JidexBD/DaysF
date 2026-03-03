@@ -4,106 +4,662 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Internship Page</title>
+
+    <!-- cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Island+Moments&display=swap"
+      rel="stylesheet"
+    />
   </head>
+
+  <!-- css -->
+  <link rel="stylesheet" href="/css/index.css" />
   <body>
+    <style>
+      /* variables for reuseability */
+      :root {
+        /* color */
+        --pc: #ff7a18;
+        --tc: #1f2937;
+        --w: #ffffff;
+        --so: #ffb066;
+        --lo: #ffe1c4;
+        --pb: #1e88e5;
+        --sb: #64b5f6;
+        --lb: #e3f2fd;
+        --sg: #f3f4f6;
+        --dgt: #4b5563;
+        --s: #bdbdbd;
+        --e: #ff383c;
+
+        --ff1: "Inter", sans-serif;
+        --ff2: "Island Moments", cursive;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: var(--tc);
+        background-color: var(--sg);
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      li {
+        font-size: var(--fs3);
+        list-style: none;
+      }
+
+      p {
+        font-weight: 300;
+      }
+
+      h2 {
+        font-size: 3.2rem;
+      }
+
+      h1 {
+        font-size: 4.8rem;
+      }
+
+      h1,
+      h2 {
+        font-weight: 700;
+      }
+
+      small {
+        font-size: 1.2rem;
+        font-weight: 300;
+      }
+
+      .pry-btn {
+        background-color: var(--pc);
+        color: var(--w);
+        border: none;
+        border-radius: 10px;
+      }
+
+      .outline-btn {
+        background-color: transparent;
+        color: var(--pb);
+        border: 1px solid var(--pb);
+        border-radius: 10px;
+      }
+
+      .logo {
+        font-family: var(--ff2);
+        font-size: 4.81rem;
+        color: var(--pc);
+      }
+
+      nav {
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 4rem;
+      }
+
+      /* links and buttons */
+      .nav-links,
+      .btn-container {
+        display: none;
+      }
+
+      /* mobile sidebar */
+      .mobile-sidebar {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--pc);
+        padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        transition: right 0.3s ease;
+        z-index: 1000;
+      }
+      .side-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: self-start;
+        gap: 2rem;
+      }
+
+      .side-container li a {
+        color: var(--tc);
+      }
+
+      .side-container li a:hover {
+        background-color: var(--dgt);
+        padding: 1rem 20rem 1rem 1rem;
+        border-radius: 8px;
+      }
+
+      .side-container li a:hover {
+        color: var(--pb);
+      }
+      .mobile-sidebar.active {
+        right: 0;
+      }
+
+      .close-sidebar {
+        align-self: flex-end;
+        background: none;
+        border: none;
+        font-size: 2.5rem;
+        cursor: pointer;
+      }
+
+      /* desktop */
+      @media (min-width: 1024px) {
+        nav {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          padding: 1rem 1rem 1rem 0.5rem;
+        }
+
+        .nav-links {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          gap: 10em;
+          cursor: pointer;
+        }
+        .btn-container {
+          display: flex;
+        }
+        .btn-container a {
+          padding: 2rem 6rem;
+          background-color: var(--pc);
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.8s ease-in-out;
+        }
+
+        .btn-container a:hover,
+        .btn-container a:active {
+          background-color: var(--lo);
+          padding: 1rem 5rem;
+        }
+
+        .mobile-btn,
+        .mobile-sidebar {
+          display: none;
+        }
+
+        .logo {
+          font-size: 4.8rem;
+          cursor: pointer;
+        }
+
+        .logo:hover,
+        .logo:active {
+          font-size: 2.4rem;
+        }
+
+        .nav-links li a {
+          font-size: 2.4rem;
+          color: var(--tc);
+        }
+
+        .nav-links li a:hover {
+          font-size: 3rem;
+          color: var(--pc);
+        }
+      }
+
+      /* footer  */
+      footer {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 6rem;
+        background-color: #62412edc;
+        color: var(--w);
+      }
+
+      /* top footer section  */
+      .fot-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+        text-align: center;
+      }
+
+      /* first col  */
+      .fot_col_one ul,
+      .fot_col ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .fot_col_one li {
+        letter-spacing: 2px;
+        font-size: 2rem;
+      }
+      /* other col */
+      .col-head {
+        font-size: 2.4rem;
+      }
+
+      .fot_col_one ul li:first-child {
+        font-size: 4.81rem;
+      }
+
+      /* foot bottom */
+      .fot-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10rem;
+      }
+
+      .arrow-container {
+        width: 70px;
+        height: 70px;
+        background-color: rgb(78, 78, 241);
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #arrow {
+        font-size: 3rem;
+      }
+
+      /* tab */
+      @media (min-width: 768px) {
+        footer {
+          padding: 2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 6rem;
+          background-color: #62412edc;
+          color: var(--w);
+        }
+        /* top footer section  */
+        .fot-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 4rem;
+          text-align: center;
+        }
+
+        /* first col  */
+        .fot_col_one ul,
+        .fot_col ul {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .fot_col_one ul li:first-child {
+          font-size: 4.81rem;
+          white-space: nowarp;
+        }
+
+        .fot_col_one li {
+          letter-spacing: 2px;
+          font-size: 2rem;
+          text-align: start;
+          max-width: 40cm;
+        }
+
+        /* other col */
+        .col-head {
+          font-size: 2.4rem;
+          white-space: nowrap;
+        }
+
+        .fot_col ul:last-child {
+          align-self: center;
+        }
+
+        /* foot bottom */
+        .fot-bottom {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10rem;
+        }
+
+        .arrow-container {
+          width: 70px;
+          height: 70px;
+          background-color: rgb(78, 78, 241);
+          border-radius: 50%;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      /* 1024 */
+      @media (min-width: 1280px) {
+        footer {
+          padding: 2rem 3rem;
+          display: flex;
+          flex-direction: column;
+          gap: 6rem;
+          background-color: #62412edc;
+          color: var(--w);
+        }
+        /* top footer section  */
+        .fot-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+          text-align: center;
+        }
+
+        /* first col  */
+        .fot_col_one ul,
+        .fot_col ul {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .fot_col_one ul li:first-child {
+          font-size: 4.81rem;
+          white-space: nowrap;
+        }
+
+        .fot_col_one li {
+          letter-spacing: 2px;
+          font-size: 2rem;
+          text-align: start;
+          max-width: 200px;
+        }
+
+        /* other col */
+        .col-head {
+          font-size: 2.4rem;
+          white-space: nowrap;
+        }
+
+        .fot_col ul:last-child {
+          align-self: center;
+        }
+
+        /* foot bottom */
+        .fot-bottom {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-around;
+        }
+
+        .arrow-container {
+          width: 70px;
+          height: 70px;
+          background-color: rgb(78, 78, 241);
+          border-radius: 50%;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      /* 1440 */
+      @media (min-width: 1440px) {
+      }
+
+      /* 1800 */
+      @media (min-width: 1800px) {
+        footer {
+          padding: 2rem 5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 6rem;
+          background-color: #62412edc;
+          color: var(--w);
+        }
+        /* top footer section  */
+        .fot-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+
+          text-align: center;
+        }
+
+        /* first col  */
+        .fot_col_one ul,
+        .fot_col ul {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .fot_col_one ul li:first-child {
+          font-size: 4.81rem;
+          white-space: nowrap;
+        }
+
+        .fot_col_one li {
+          letter-spacing: 2px;
+          font-size: 2rem;
+          text-align: start;
+          max-width: 200px;
+        }
+
+        /* other col */
+        .col-head {
+          font-size: 2.4rem;
+          white-space: nowrap;
+        }
+
+        .fot_col ul:last-child {
+          align-self: center;
+        }
+
+        /* foot bottom */
+        .fot-bottom {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-around;
+        }
+
+        .arrow-container {
+          width: 70px;
+          height: 70px;
+          background-color: rgb(78, 78, 241);
+          border-radius: 50%;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    </style>
     <!-- nav -->
-    <nav class="mynav-bar">
-      <!-- logo -->
-      <div class="navlogo">
-        <a href="/html/home.html">
-          <img src="/assets/DEVX.svg" class="logo-img" />
-        </a>
+    <nav>
+      <a href="" class="logo">DaysFigurez</a>
+
+      <!-- desktop links  -->
+      <ul class="nav-links">
+        <li><a href="">Home</a></li>
+        <li><a href="">Explore</a></li>
+        <li><a href="">Faq</a></li>
+        <li><a href="">Contact</a></li>
+      </ul>
+      <div class="btn-container">
+        <a href="#"
+          ><i
+            class="fa-solid fa-user fa-lg"
+            style="color: rgb(255, 255, 255)"
+          ></i
+        ></a>
       </div>
 
-      <!-- desktop links -->
-      <div class="nav-items">
-        <a href="/html/home.html">Home</a>
-        <a href="/html/programs.html">Our Program</a>
-        <a href="/html/tpu.html">Why Dayfigurez</a>
-        <a href="/html/community.html">Community</a>
-        <a href="/html/contact.html">Contact Us</a>
-        <a href="/html/faq.html">FAQ</a>
-      </div>
-
-      <!-- buttons -->
-      <div class="nav-buttons">
-        <a href="/html/signIn.html" class="nav-btn">Sign in</a>
-        <a href="/html/signUp.html" class="nav-btn-primary">Sign up</a>
-      </div>
-
-      <!-- hamburger -->
-      <button class="mobile-buttons">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+      <!-- mobile button -->
+      <a href="#" class="mobile-btn">
+        <i class="fa-solid fa-bars fa-2xl" style="color: rgb(18, 35, 66)"></i>
+      </a>
     </nav>
 
-    <!-- MOBILE SIDEBAR -->
+    <!-- mbbile sidebar -->
     <div class="mobile-sidebar">
-      <button class="close-sidebar">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
+      <a href="#" class="close-sidebar"
+        ><i class="fa-solid fa-x fa-sm" style="color: rgb(18, 35, 66)"></i
+      ></a>
 
-      <a href="/html/home.html">Home</a>
-      <a href="/html/programs.html">Our Program</a>
-      <a href="/html/tpu.html">Why TPU</a>
-      <a href="/html/community.html">Community</a>
-      <a href="/html/contact.html">Contact Us</a>
-      <a href="/html/faq.html">FAQ</a>
-
-      <a href="/html/signIn.html" class="nav-btn">Sign in</a>
-      <a href="/html/signUp.html" class="nav-btn-primary">Sign up</a>
+      <!-- mobile - links -->
+      <ul class="side-container">
+        <li><a href="">Home</a></li>
+        <li><a href="">Explore</a></li>
+        <li><a href="">Faq</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="btn-container">
+        <a href="#">Login</a>
+      </div>
     </div>
 
     <!-- page -->
+    <main>
+      <h1>Unlocking Business Potential with our state of the earth courses</h1>
+      <p>
+        We will not only teach you but provide be a guide for you througghout
+        your tech journey
+      </p>
+
+      <button>Start Journey</button>
+    </main>
 
     <!-- footer -->
     <footer>
-      <div class="foot-sec1">
-        <div class="col1">
-          <a href="home.html">
-            <img src="/assets/Sample Logo.png" alt="" />
-          </a>
-
-          <p>Top learning experiences that create more talent in the world.</p>
+      <!-- container to hold footer text -->
+      <div class="fot-container">
+        <!-- each footer section -->
+        <div class="fot_col_one">
+          <ul>
+            <li class="logo" id="fot_logo">DaysFigurez</li>
+            <li>Learn tech the right way, and change the future of Africa.</li>
+          </ul>
         </div>
 
-        <div class="col2">
-          <h2>Links</h2>
-          <a href="">About us</a>
-          <a href="">Programs</a>
-          <a href="">Contact</a>
-          <a href="">FAQs</a>
+        <div class="fot_col">
+          <ul>
+            <li class="col-head">Quick Links</li>
+            <li>Home</li>
+            <li>Explore</li>
+            <li>My Order</li>
+            <li>Account</li>
+            <li>Contact</li>
+          </ul>
         </div>
 
-        <div class="col3">
-          <h2>Socials</h2>
-          <a href="">Twitter</a>
-          <a href="">Linkedin</a>
-          <a href="">Facebook</a>
+        <div class="fot_col">
+          <ul>
+            <li class="col-head">Contact Us</li>
+            <li>Home</li>
+            <li>Explore</li>
+            <li>My Order</li>
+            <li>Account</li>
+            <li>Contact</li>
+          </ul>
         </div>
 
-        <div class="col4">
-          <h2>Legal</h2>
-          <a href="">Terms</a>
-          <a href="">Privacy</a>
+        <div class="fot_col">
+          <ul class="last">
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Linkedin</li>
+            <li>Instagram</li>
+          </ul>
         </div>
       </div>
 
-      <hr />
+      <!-- bottom section of the footer  -->
+      <div class="fot-bottom">
+        <p>© 2020 Lift Media. All rights reserved.</p>
 
-      <div class="foot-sec2">
-        <div class="lefty">
-          <p>© 2023 Orralearn. All rights reserved.</p>
-        </div>
-
-        <div class="righty">
-          <a href=""><img src="/assets/Duotone/Social icont.png" alt="" /></a>
-          <a href=""><img src="/assets/Duotone/Social icon2.png" alt="" /></a>
-          <a href=""><img src="/assets/Duotone/Social icon3.png" alt="" /></a>
-          <a href=""><img src="/assets/Duotone/Social icon4.png" alt="" /></a>
-          <a href=""><img src="/assets/Duotone/Social icon5.png" alt="" /></a>
+        <div class="arrow-container">
+          <i
+            class="fa-solid fa-arrow-up fa-2xs"
+            id="arrow"
+            style="color: rgba(255, 255, 255, 1)"
+          ></i>
         </div>
       </div>
     </footer>
+
+    <!-- script -->
+    <script>
+      // navigation
+
+      const openBtn = document.querySelector(".mobile-btn");
+
+      const closeBtn = document.querySelector(".close-sidebar");
+
+      const sidebar = document.querySelector(".mobile-sidebar");
+
+      openBtn.addEventListener("click", () => {
+        sidebar.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+      });
+    </script>
   </body>
 </html>
